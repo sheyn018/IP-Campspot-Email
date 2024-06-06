@@ -27,10 +27,11 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 // New route handler for sending email
 app.get("/send-mail", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { userName, email } = req.query;
+        let { userName, email, url } = req.query;
         // Decode the URI-encoded values
         userName = decodeURIComponent(userName);
         email = decodeURIComponent(email);
+        url = url;
         // Send the email
         const info = yield transporter.sendMail({
             from: 'Insider Perks <stolentino@insiderperks.com>',
@@ -99,7 +100,7 @@ app.get("/send-mail", (req, res) => __awaiter(void 0, void 0, void 0, function* 
                             <p>Hello <strong>${userName}</strong>!</p>
                             <p>Please click on the link below to start your booking process!</p>
                             <div style="text-align: center; margin-top: 20px;">
-                                <a href="https://www.campspot.com/book/verderanchrvresort?&utm_source=google&utm_medium=organic&utm_campaign=&utm_content=&utm_keyword=&wc_visitor=97982-a2b7ba9d-ef04-f3b7-2d13-575d87c34ac5&_gl=1*1pvj1bz*_gcl_au*NzY4MzUzNDgyLjE3MTY0NzY2MjM.*_ga*MTU3MDAxNDE4Ni4xNzE2NDc2NjI0*_ga_7G3LYDC0B2*MTcxNzUwMzM3My4yLjEuMTcxNzUwMzM5OC4zNS4wLjA." class="cta-button" style="display: inline-block; background-color: #0056b3; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 25px; transition: background-color 0.3s;">Book Now</a>
+                                <a href="${url}" class="cta-button" style="display: inline-block; background-color: #0056b3; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 25px; transition: background-color 0.3s;">Book Now</a>
                             </div>
                         </div>
                         <div class="social-section">

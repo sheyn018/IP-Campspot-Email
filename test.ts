@@ -7,6 +7,7 @@ async function testGeneratePDFEndpoint() {
     const queryParams = {
       userName: encodeURIComponent("Sheane Tolentino"),
       email: 'sheanemtolentino@gmail.com',
+      url: 'https://insiderperks.com/wp-content/endpoints/campspot/card-connect.php?cartId=7acb8022-8506-49ed-9e9a-252a0ddb8af7&amount=200&name=Sheane%20Jossel%20Tolentino&state=CA&type=SHIPPING&country=USA&city=Los%20Angeles&address1=123%20Sunny&postal=9001'
     };
 
     const response = await axios.get('http://localhost:3001/send-mail', {
