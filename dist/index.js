@@ -39,86 +39,102 @@ app.get("/send-mail", (req, res) => __awaiter(void 0, void 0, void 0, function* 
             subject: '[Open Link] Book Your Stay',
             html: `<!DOCTYPE html>
             <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Welcome to the Resort</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        margin: 0;
-                        padding: 0;
-                        background-color: #f4f4f4;
-                    }
-                    .container {
-                        max-width: 600px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #ffffff;
-                        border-radius: 10px;
-                        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-                    }
-                    .header {
-                        text-align: center;
-                        margin-bottom: 20px;
-                    }
-                    .header h1 {
-                        color: #444444;
-                    }
-                    .content {
-                        color: #666666;
-                        line-height: 1.6;
-                    }
-                    .cta-button {
-                        display: inline-block;
-                        background-color: #0056b3;
-                        color: #ffffff;
-                        padding: 12px 24px;
-                        text-decoration: none;
-                        border-radius: 25px;
-                        transition: background-color 0.3s;
-                    }
-                    .cta-button:hover {
-                        background-color: #004494;
-                    }
-                    .social-section {
-                        margin-top: 40px;
-                        text-align: center;
-                    }
-                    .social-section img {
-                        margin: 0 10px;
-                    }
-                </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <div class="header">
-                            <img src="https://st2.depositphotos.com/1768926/7866/v/450/depositphotos_78666192-stock-illustration-a-logo-sample-logo-for.jpg" alt="logo" width="30%" height="30%">
-                            <h1>Welcome to the Resort</h1>
-                        </div>
-                        <div class="content">
-                            <p>Hello <strong>${userName}</strong>!</p>
-                            <p>Please click on the link below to start your booking process!</p>
-                            <div style="text-align: center; margin-top: 20px;">
-                                <a href="${url}" class="cta-button" style="display: inline-block; background-color: #0056b3; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 25px; transition: background-color 0.3s;">Book Now</a>
-                            </div>
-                        </div>
-                        <div class="social-section">
-                            <hr style="border: 0; height: 1px; background-color: #dddddd; margin-bottom: 20px;">
-                            <p style="font-size: 16px; margin-bottom: 10px;">Let's get social</p>
-                            <a href="https://www.facebook.com">
-                                <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/facebook.png" alt="Facebook" title="Facebook" width="25" height="25" />
-                            </a>
-                            <a href="https://www.instagram.com">
-                                <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/instagram.png" alt="Instagram" title="Instagram" width="25" height="25" />
-                            </a>
-                            <a href="https://www.linkedin.com">
-                                <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" alt="LinkedIn" title="LinkedIn" width="25" height="25" />
-                            </a>
-                        </div>
-                    </div>
-                </body>
-                </html>`
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Resort</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .header img {
+            width: 20%;
+            height: auto;
+        }
+        .header h1 {
+            color: #333333;
+            margin: 0;
+            padding-left: 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .content {
+            color: #555555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #0056b3;
+            color: #ffffff;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #004494;
+        }
+        .social-section {
+            text-align: center;
+        }
+        .social-section img {
+            margin: 0 15px;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #dddddd;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://st2.depositphotos.com/1768926/7866/v/450/depositphotos_78666192-stock-illustration-a-logo-sample-logo-for.jpg" alt="logo">
+            <h1>Welcome to the Resort</h1>
+        </div>
+        <div class="content">
+            <p>Hello <strong>${userName}</strong>!</p>
+            <p>We're thrilled to have you with us! Our resort offers the perfect blend of luxury and relaxation, ensuring an unforgettable experience for all our guests. We are excited to assist you in starting your booking process and making your stay with us extraordinary.</p>
+            <p>To begin your journey, please click on the link below:</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="${url}" class="cta-button">Book Now</a>
+            </div>
+        </div>
+        <hr>
+        <div class="social-section">
+            <p style="font-size: 16px; margin-bottom: 20px;">Visit Us On Social Media</p>
+            <a href="https://www.facebook.com">
+                <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/facebook.png" alt="Facebook" title="Facebook" width="30" height="30" />
+            </a>
+            <a href="https://www.instagram.com">
+                <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/instagram.png" alt="Instagram" title="Instagram" width="30" height="30" />
+            </a>
+            <a href="https://www.linkedin.com">
+                <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" alt="LinkedIn" title="LinkedIn" width="30" height="30" />
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+`
         });
         console.log('Email sent: ' + info.response);
         res.status(200).send('Email sent successfully');
