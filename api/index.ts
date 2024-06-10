@@ -143,35 +143,47 @@ app.get("/send-mail", async (req: { query: { userName: any; email: any; url: any
 });
 
 // New route handler for sending email
-app.get("/send-userinfo", async (req: { query: { email: any; userInfo: any; siteInfo: any}; }, res: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
+app.get("/send-userinfo", async (req: { query: { userInfo: any; siteInfo: any}; }, res: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
     try {
-        let { email, userInfo, siteInfo } = req.query;
+        let { userInfo, siteInfo } = req.query;
 
         // Decode the URI-encoded values
-        email = decodeURIComponent(email);
         userInfo = JSON.parse(decodeURIComponent(userInfo));
         siteInfo = JSON.parse(decodeURIComponent(siteInfo));
 
-        const guestName = userInfo.name;
-        const checkinDate = userInfo.checkin;
-        const checkoutDate = userInfo.checkout;
-        const adults = userInfo.adults;
-        const children = userInfo.children;
-        const pets = userInfo.pets;
-        const siteType = siteInfo.siteType;
+        // Function to set default values if null, undefined, or an empty string
+        const getValueOrDefault = (value: any, defaultValue: any) => {
+            return (value === null || value === undefined || value === '') ? defaultValue : value;
+        };
 
-        const siteName = siteInfo.siteName;
-        const siteAmenities = siteInfo.siteAmenities;
-        const sitePrice = siteInfo.sitePrice;
-        const lockSite = siteInfo.lockSite;
-        const totalPrice = siteInfo.totalPrice;
+        // User Info
+        const email = getValueOrDefault(userInfo.email, '<Not Set>');
+        const guestName = getValueOrDefault(userInfo.name, '<Not Set>');
+        const checkinDate = getValueOrDefault(userInfo.checkin, '<Not Set>');
+        const checkoutDate = getValueOrDefault(userInfo.checkout, '<Not Set>');
+        const adults = getValueOrDefault(userInfo.adults, '<Not Set>');
+        const children = getValueOrDefault(userInfo.children, '<Not Set>');
+        const pets = getValueOrDefault(userInfo.pets, '<Not Set>');
+        const billingAddress = getValueOrDefault(userInfo.billAddress, '<Not Set>');
+        const phoneNumber = getValueOrDefault(userInfo.phone, '<Not Set>');
 
+        // Site Info
+        const siteType = getValueOrDefault(siteInfo.siteType, '<Not Set>');
+        const siteName = getValueOrDefault(siteInfo.siteName, '<Not Set>');
+        const siteAddress = getValueOrDefault(siteInfo.siteAddress, '<Not Set>');
+        const siteContact = getValueOrDefault(siteInfo.siteContact, '<Not Set>');
+        const siteAmenities = getValueOrDefault(siteInfo.siteAmenities, ['<Not Set>']).join(', ');
+        const sitePrice = getValueOrDefault(siteInfo.sitePrice, '<Not Set>');
+        const lockSite = getValueOrDefault(siteInfo.lockSite, '<Not Set>');
+        const totalPrice = getValueOrDefault(siteInfo.totalPrice, '<Not Set>');
+
+        // If RV site, include RV details
         let rvDetails = '';
 
         if (siteType === 'rv') {
-            const rvLength = siteInfo.length;
-            const rvSlideout = siteInfo.slideouts;
-            const rvType = siteInfo.type;
+            const rvLength = getValueOrDefault(siteInfo.length, '<Not Set>');
+            const rvSlideout = getValueOrDefault(siteInfo.slideouts, '<Not Set>');
+            const rvType = getValueOrDefault(siteInfo.type, '<Not Set>');
             rvDetails = `
                 <h3>RV Details:</h3>
                 <ul>
@@ -277,10 +289,14 @@ app.get("/send-userinfo", async (req: { query: { email: any; userInfo: any; site
                             <li><strong>Number of Adults:</strong> ${adults}</li>
                             <li><strong>Number of Children:</strong> ${children}</li>
                             <li><strong>Pets:</strong> ${pets}</li>
+                            <li><strong>Billing Address:</strong> ${billingAddress}</li>
+                            <li><strong>Phone Number:</strong> ${phoneNumber}</li>
                         </ul>
                         <h3>Site Details:</h3>
                         <ul>
                             <li><strong>Site Name:</strong> ${siteName}</li>
+                            <li><strong>Site Address:</strong> ${siteAddress}</li>
+                            <li><strong>Site Contact:</strong> ${siteContact}</li>
                             <li><strong>Amenities:</strong> ${siteAmenities}</li>
                             <li><strong>Price per Night:</strong> ${sitePrice}</li>
                             <li><strong>Lock Site Option:</strong> ${lockSite}</li>

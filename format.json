@@ -1,0 +1,24 @@
+userInfo = {
+    email,
+    checkin,
+    checkout,
+    adults,
+    children,
+    pets,
+    equipmentType,
+    slideOut,
+    length,
+    postal,
+    address1,
+    billAddress,
+    phone,
+    name,
+  };
+
+
+  siteInfo = {
+    site,
+    siteName: cartData.campsiteName,
+    siteAmenities: cartData.amenities,
+    sitePrice:cartData.totalPrice
+  };
