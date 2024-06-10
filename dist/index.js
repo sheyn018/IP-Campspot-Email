@@ -156,30 +156,31 @@ app.get("/send-userinfo", (req, res) => __awaiter(void 0, void 0, void 0, functi
             return (value === null || value === undefined || value === '') ? defaultValue : value;
         };
         // User Info
-        const email = getValueOrDefault(userInfo.email, '<Not Set>');
-        const guestName = getValueOrDefault(userInfo.name, '<Not Set>');
-        const checkinDate = getValueOrDefault(userInfo.checkin, '<Not Set>');
-        const checkoutDate = getValueOrDefault(userInfo.checkout, '<Not Set>');
-        const adults = getValueOrDefault(userInfo.adults, '<Not Set>');
-        const children = getValueOrDefault(userInfo.children, '<Not Set>');
-        const pets = getValueOrDefault(userInfo.pets, '<Not Set>');
-        const billingAddress = getValueOrDefault(userInfo.billAddress, '<Not Set>');
-        const phoneNumber = getValueOrDefault(userInfo.phone, '<Not Set>');
+        const email = getValueOrDefault(userInfo.email, '--Not Set--');
+        const guestName = getValueOrDefault(userInfo.name, '--Not Set--');
+        const checkinDate = getValueOrDefault(userInfo.checkin, '--Not Set--');
+        const checkoutDate = getValueOrDefault(userInfo.checkout, '--Not Set--');
+        const adults = getValueOrDefault(userInfo.adults, '--Not Set--');
+        const children = getValueOrDefault(userInfo.children, '--Not Set--');
+        const pets = getValueOrDefault(userInfo.pets, '--Not Set--');
+        const billingAddress = getValueOrDefault(userInfo.billAddress, '--Not Set--');
+        console.log(billingAddress);
+        const phoneNumber = getValueOrDefault(userInfo.phone, '--Not Set--');
         // Site Info
-        const siteType = getValueOrDefault(siteInfo.siteType, '<Not Set>');
-        const siteName = getValueOrDefault(siteInfo.siteName, '<Not Set>');
-        const siteAddress = getValueOrDefault(siteInfo.siteAddress, '<Not Set>');
-        const siteContact = getValueOrDefault(siteInfo.siteContact, '<Not Set>');
-        const siteAmenities = getValueOrDefault(siteInfo.siteAmenities, ['<Not Set>']).join(', ');
-        const sitePrice = getValueOrDefault(siteInfo.sitePrice, '<Not Set>');
-        const lockSite = getValueOrDefault(siteInfo.lockSite, '<Not Set>');
-        const totalPrice = getValueOrDefault(siteInfo.totalPrice, '<Not Set>');
+        const siteType = getValueOrDefault(siteInfo.siteType, '--Not Set--');
+        const siteName = getValueOrDefault(siteInfo.siteName, '--Not Set--');
+        const siteAddress = getValueOrDefault(siteInfo.siteAddress, '--Not Set--');
+        const siteContact = getValueOrDefault(siteInfo.siteContact, '--Not Set--');
+        const siteAmenities = getValueOrDefault(siteInfo.siteAmenities, ['--Not Set--']).join(', ');
+        const sitePrice = getValueOrDefault(siteInfo.sitePrice, '--Not Set--');
+        const lockSite = getValueOrDefault(siteInfo.lockSite, '--Not Set--');
+        const totalPrice = getValueOrDefault(siteInfo.totalPrice, '--Not Set--');
         // If RV site, include RV details
         let rvDetails = '';
         if (siteType === 'rv') {
-            const rvLength = getValueOrDefault(siteInfo.length, '<Not Set>');
-            const rvSlideout = getValueOrDefault(siteInfo.slideouts, '<Not Set>');
-            const rvType = getValueOrDefault(siteInfo.type, '<Not Set>');
+            const rvLength = getValueOrDefault(siteInfo.length, '--Not Set--');
+            const rvSlideout = getValueOrDefault(siteInfo.slideouts, '--Not Set--');
+            const rvType = getValueOrDefault(siteInfo.type, '--Not Set--');
             rvDetails = `
                 <h3>RV Details:</h3>
                 <ul>
@@ -274,7 +275,7 @@ app.get("/send-userinfo", (req, res) => __awaiter(void 0, void 0, void 0, functi
                         <h1>Booking Request</h1>
                     </div>
                     <div class="content">
-                        <p>Hello <strong>${guestName}</strong>,</p>
+                        <p><strong> Hello </strong>,</p>
                         <p>We have received a booking request from a guest. Here are the details:</p>
                         <h3>Guest Details:</h3>
                         <ul>
